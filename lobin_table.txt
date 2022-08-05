@@ -1,0 +1,71 @@
+Create table user(
+    user_id varchar(20) PRIMARY KEY,
+    name nvarchar(20),
+    password char(8),
+    email varchar(40),
+    permission smallint
+);
+
+Create table type(
+    type_id smallint PRIMARY KEY,
+    name nvarchar(15)
+);
+
+Create table status(
+    status_id smallint PRIMARY KEY,
+    status nvarchar(20),
+    status_iddeliver_date date
+);
+
+Create table product(
+    product_id      int             AUTO_INCREMENT PRIMARY KEY,
+    type_id         smallint NOT NULL,
+    products_name   nvarchar(20)    NOT NULL,
+    price           int check(price >= 0),
+    order_date      date,
+    order_status    smallint NOT NULL,
+    order_user      varchar(20)     NOT NULL,
+    FOREIGN KEY (order_user)    REFERENCES user(user_id),
+    FOREIGN KEY (type_id)       REFERENCES type(type_id),
+    FOREIGN KEY (order_status)  REFERENCES status(status_id)
+); 
+
+Create table product(
+    product_id      int     AUTO_INCREMENT PRIMARY KEY,
+    type_id         smallint,
+    products_name   nvarchar(20),
+    price           int,
+    order_date      date,
+    order_status    smallint,
+    order_user      varchar(20),
+    FOREIGN KEY (order_user)    REFERENCES user(user_id),
+    FOREIGN KEY (type_id)       REFERENCES type(type_id),
+    FOREIGN KEY (order_status)  REFERENCES status(status_id)
+); 
+
+
+insert into user(user_id, name, password, email, permission) values('hoge', '山口太郎','P@ssw0rd','hoge@yic.ac.jp',1);
+insert into user(user_id, name, password, email, permission) values('k-ygawa', '柳川小次郎','kojikoji','k-ygwa@yic.ac.jp',2);
+insert into user(user_id, name, password, email, permission) values('sugi', '杉林','sugisugi','sugi@yic.ac.jp',2);
+insert into user values('yoshi', '吉松耕佑','@yamaguchi02','B0021037@ib.yic.ac.jp',1);
+
+insert into type(type_id, name) values(1, '書籍');
+insert into type(type_id, name) values(2, 'サプライ品');
+insert into type(type_id, name) values(3, 'ドローン');
+
+insert into status(status_id, status, status_iddeliver_date) values(1, '発注済', NULL);
+insert into status(status_id, status, status_iddeliver_date) values(2, '納品済', '2020-6-22');
+insert into status(status_id, status, status_iddeliver_date) values(3, '未発注', NULL);
+
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(1,'iPhoneアプリ開発集中講座',2728,'2020-6-20',1,'hoge');
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(2,'コピー用紙 A4',700,'2020-6-21',2,'k-ygawa');
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(3,'DJI Minal 2',50499,'2020-6-18',3,'sugi');
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(1,'コピー用紙 A3',800,'2020-6-20',1,'hoge');
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(1,'HTML参考書',2200,'2020-6-2',1,'hoge');
+insert into product(type_id,products_name,price,order_date,order_status,order_user)
+values(1,'css参考書',2728,'2020-6-20',1,'hoge');
