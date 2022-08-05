@@ -1,0 +1,27 @@
+<!-- YIC情報ビジネス専門学校
+        情報システム科２年吉松耕佑
+            B0021037@ib.yic.ac.jp -->
+
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ログイン画面</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>  
+        <form action="login.php" method="get">
+            <label for="user_id">ユーザーID</label>
+            <input type="text" name="user_id">
+            <p></p>
+            <label for="password">パスワード</label>
+            <input type="password" name="password">
+            <input type="hidden" name="start" value="0">
+            <input type="hidden" name="size" value="5">
+            <p><input type="submit" id="login_btn" name="submitBtn" value="ログイン"></p>
+        </form>
+    </body>
+</html>
+
